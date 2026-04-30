@@ -1,0 +1,104 @@
+<header>
+
+    <h1>زَادُ المُكَلَّف</h1>
+
+    <p>البوابة الجامعة لفتاوى مراجع الطائفة الحقّة</p>
+
+</header>
+
+<section class="controls-section">
+
+    <div class="search-container">
+
+        <div class="search-box">
+
+            <i class="fas fa-search"></i>
+
+            <input type="text" id="searchInput" placeholder="ابحث عن مسألة (مثلاً: الصلاة، الخمس)...">
+
+        </div>
+
+        <div class="filter-buttons">
+
+            <button class="filter-btn active" data-filter="all">الكل</button>
+
+            <button class="filter-btn" data-filter="sistani">السيد السيستاني</button>
+
+            <button class="filter-btn" data-filter="khamenei">السيد الخامنئي</button>
+
+            <button class="filter-btn" data-filter="fadlallah">السيد فضل الله</button>
+
+        </div>
+
+    </div>
+
+</section>
+:root {
+
+    --primary: #1a3a5f;
+
+    --accent: #c5a059;
+
+    --bg: #f8f9fa;
+
+    --white: #ffffff;
+
+}
+
+body {
+
+    direction: rtl;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    background-color: var(--bg);
+
+    margin: 0;
+
+}
+
+header {
+
+    background: var(--primary);
+
+    color: white;
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    border-bottom: 5px solid var(--accent);
+
+}
+
+.controls-section {const searchInput = document.getElementById('searchInput');
+
+const filterBtns = document.querySelectorAll('.filter-btn');
+
+const fatwaCards = document.querySelectorAll('.fatwa-card');
+
+// وظيفة البحث والفلترة معاً
+
+function updateDisplay() {
+
+    const searchTerm = searchInput.value.toLowerCase();
+
+    const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+
+    fatwaCards.forEach(card => {
+
+        const text = card.innerText.toLowerCase();
+
+        const marja = card.dataset.marja;
+
+        
+
+        const matchesSearch = text.includes(searchTerm);
+
+        const matchesFilter = (activeFilter === 'all' || marja === activeFilter);
+
+        if (matchesSearch && matchesFilter) {
+
+            card.style.display = "block";
+
+        } else {
